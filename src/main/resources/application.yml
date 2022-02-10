@@ -11,16 +11,6 @@ spring:
             - Path=/auth-certs
           filters:
             - RewritePath=/auth-certs, /auth/realms/msagw/protocol/openid-connect/certs
-#        - id: customers
-#          uri: http://localhost:9001
-#          predicates:
-#            - Path=/api/customers/**
-#          filters:
-#            - RewritePath=/api/customers, /
-#        - id: portal
-#          uri: http://localhost:3000
-#          predicates:
-#            - Path=/**
         - id: api_call
           uri: http://localhost:8088
           predicates:
@@ -29,20 +19,25 @@ spring:
     oauth2:
       client:
         registration:
-          cicamentok:
-            client-id: cicamentok
-            client-secret: cf66077f-4d41-4d62-a737-1f59c6d703dc
+          idom:
+            client-id: VEN
+            client-secret: fbf4b937-5127-4273-903f-e83e1182744f
+#            client-id: cicamentok
+#            client-secret: cf66077f-4d41-4d62-a737-1f59c6d703dc
             scope: openid
             client-authentication-method: basic
             authorization-grant-type: authorization_code
-            redirect-uri: http://localhost:8080/login/oauth2/code/cicamentok
+            redirect-uri: http://127.0.0.1:8080/login/oauth2/code/idom
         provider:
-          cicamentok:
-            authorization-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/auth
-            token-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/token
-            logout-uri: https://sso.oldalaim.com/auth/realms/oldalaim/protocol/openid-connect/logout?redirect_uri=http://localhost:9000
-            jwk-set-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/certs
-
+          idom:
+            authorization-uri: https://sso-test.afk-dev.idomsoft.hu/auth
+            token-uri: https://sso-test.afk-dev.idomsoft.hu/token
+            logout-uri: https://sso-test.afk-dev.idomsoft.hu/auth
+            jwk-set-uri: https://sso-test.afk-dev.idomsoft.hu/jwks
+#            authorization-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/auth
+#            token-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/token
+#            logout-uri: https://sso.oldalaim.com/auth/realms/oldalaim/protocol/openid-connect/logout?redirect_uri=http://localhost:9000
+#            jwk-set-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/certs
 
   redis:
     port: 6379

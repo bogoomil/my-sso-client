@@ -18,11 +18,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth/whoami")
-public class WhoamiController {
+public class WhoAmIController {
 
     private final SsoProperties properties;
 
-    public WhoamiController(@Autowired SsoProperties properties) {
+    public WhoAmIController(@Autowired SsoProperties properties) {
         this.properties = properties;
     }
 
