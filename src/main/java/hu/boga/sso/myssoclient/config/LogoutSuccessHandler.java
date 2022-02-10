@@ -18,7 +18,7 @@ import java.net.URI;
 @Component
 public class LogoutSuccessHandler implements ServerLogoutSuccessHandler {
 
-    @Value("${spring.security.oauth2.client.provider.idom.logout-uri}")
+    @Value("${spring.security.oauth2.client.provider.cicamentok.logout-uri}")
     private String logoutUrl;
 
     @Override
