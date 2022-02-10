@@ -1,0 +1,64 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+        - RemoveRequestHeader=Cookie
+      routes:
+        - id: auth-certs
+          uri: https://sso.oldalaim.com
+          predicates:
+            - Path=/auth-certs
+          filters:
+            - RewritePath=/auth-certs, /auth/realms/msagw/protocol/openid-connect/certs
+#        - id: customers
+#          uri: http://localhost:9001
+#          predicates:
+#            - Path=/api/customers/**
+#          filters:
+#            - RewritePath=/api/customers, /
+#        - id: portal
+#          uri: http://localhost:3000
+#          predicates:
+#            - Path=/**
+        - id: api_call
+          uri: http://localhost:8088
+          predicates:
+            - Path=/api/**
+  security:
+    oauth2:
+      client:
+        registration:
+          cicamentok:
+            client-id: cicamentok
+            client-secret: cf66077f-4d41-4d62-a737-1f59c6d703dc
+            scope: openid
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/cicamentok
+        provider:
+          cicamentok:
+            authorization-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/auth
+            token-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/token
+            logout-uri: https://sso.oldalaim.com/auth/realms/oldalaim/protocol/openid-connect/logout?redirect_uri=http://localhost:9000
+            jwk-set-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/certs
+
+
+  redis:
+    port: 6379
+    password: kergezerge
+    host: localhost
+
+logging:
+  level:
+    root: INFO
+    hu: DEBUG
+    org.springframework.web.servlet.mvc: trace
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
+    org.springframework.security.web.FilterChainProxy: INFO
+    org.springframework.boot.web.servlet: trace
+
+sso:
+  login-uri: /oauth2/authorization/cicamentok
+  roles-claim: roles
+  name-claim: name
