@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  hu.boga.sso.myssoclient.config.SsoAutoconfiguration

@@ -30,7 +30,7 @@ spring:
           cicamentok:
             authorization-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/auth
             token-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/token
-            logout-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/logout?redirect_uri=http://localhost:9000
+            logout-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/logout?redirect_uri=http://localhost:8080
             jwk-set-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/certs
 
   redis:
@@ -51,4 +51,4 @@ sso:
   login-uri: /oauth2/authorization/cicamentok
   roles-claim: roles
   name-claim: name
-  allowed-cors-origin: http://localhost:8080
+  allowed-cors-origin: http://localhost:8081
