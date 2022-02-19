@@ -3,6 +3,7 @@ package hu.boga.sso.myssoclient.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.web.cors.CorsConfiguration;
@@ -17,6 +18,7 @@ import java.util.Collections;
 @Configuration
 @EnableConfigurationProperties(SsoProperties.class)
 @EnableRedisRepositories
+@ComponentScan("hu.boga.sso.myssoclient")
 public class SsoAutoconfiguration {
 
     @Autowired
