@@ -15,7 +15,6 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
-
 @RestController
 @RequestMapping("/auth/whoami")
 public class WhoAmIController {
@@ -35,7 +34,7 @@ public class WhoAmIController {
                 .defaultIfEmpty(new EmptyAuthentication())
                 .map(p -> {
                     if (p.isAuthenticated()) {
-                        return new ResponseEntity<>(((OAuth2AuthenticationToken)p).getPrincipal().getAttributes(), HttpStatus.OK);
+                        return new ResponseEntity<>(((OAuth2AuthenticationToken) p).getPrincipal().getAttributes(), HttpStatus.OK);
                     } else {
                         exchange.getResponse().getHeaders().add(SecurityConfig.AUTH_ENTRYPOINT_HEADER_NAME, properties.getLoginUri());
                         return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
